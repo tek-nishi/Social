@@ -8,6 +8,7 @@
 #include "cinder/ImageIo.h"
 #include "Capture.h"
 #include "Social.h"
+#include "Share.h"
 
 
 #if defined(_MSC_VER)
@@ -30,6 +31,7 @@ class SocialApp : public AppNative {
   
   gl::Texture twitter;
   gl::Texture facebook;
+  gl::Texture share;
   gl::Texture bg;
 
   
@@ -47,9 +49,10 @@ class SocialApp : public AppNative {
     getSignalSupportedOrientations().connect([](){ return InterfaceOrientation::All; });
 #endif
 
-    twitter = loadImage(loadAsset("twitter.png"));
+    twitter  = loadImage(loadAsset("twitter.png"));
     facebook = loadImage(loadAsset("facebook.png"));
-    bg = loadImage(loadAsset("img_miku.png"));
+    share    = loadImage(loadAsset("share.png"));
+    bg       = loadImage(loadAsset("img_miku.png"));
 
     gl::enableAlphaBlending();
   }
@@ -59,15 +62,14 @@ class SocialApp : public AppNative {
     auto window_size = getWindowSize();
 
     for (const auto& touch : event.getTouches()) {
-      const auto& pos = touch.getPos();
+      const auto& touch_pos = touch.getPos();
       
       {
         Vec2i size = twitter.getSize();
-        float x = window_size.x / 2 - size.x - 50;
-        float y = window_size.y / 2 - size.y / 2;
+        Vec2f pos = window_size / 2 - size / 2 + Vec2i(-150, 0);
 
-        Rectf rect(x, y, x + size.x, y + size.y);
-        if (rect.contains(pos)) {
+        Rectf rect(pos, pos + size);
+        if (rect.contains(touch_pos)) {
           console() << "Twitter" << std::endl;
 
           post(ngs::Social::TWITTER);
@@ -77,14 +79,26 @@ class SocialApp : public AppNative {
       
       {
         Vec2i size = facebook.getSize();
-        float x = window_size.x / 2 + 50;
-        float y = window_size.y / 2 - size.y / 2;
+        Vec2f pos = window_size / 2 - size / 2 + Vec2i(0, 0);
 
-        Rectf rect(x, y, x + size.x, y + size.y);
-        if (rect.contains(pos)) {
+        Rectf rect(pos, pos + size);
+        if (rect.contains(touch_pos)) {
           console() << "Facebook" << std::endl;
 
           post(ngs::Social::FACEBOOK);
+          break;
+        }
+      }
+      
+      {
+        Vec2i size = share.getSize();
+        Vec2f pos = window_size / 2 - size / 2 + Vec2i(150, 0);
+
+        Rectf rect(pos, pos + size);
+        if (rect.contains(touch_pos)) {
+          console() << "Share" << std::endl;
+
+          post();
           break;
         }
       }
@@ -121,10 +135,9 @@ class SocialApp : public AppNative {
       gl::pushModelView();
 
       Vec2i size = twitter.getSize();
-      float x = window_size.x / 2 - size.x - 50;
-      float y = window_size.y / 2 - size.y / 2;
-    
-      gl::translate(Vec2f(x, y));
+      Vec2f pos  = window_size / 2 - size / 2 + Vec2i(-150, 0);
+
+      gl::translate(pos);
       gl::draw(twitter);
       
       gl::popModelView();
@@ -134,11 +147,22 @@ class SocialApp : public AppNative {
       gl::pushModelView();
       
       Vec2i size = facebook.getSize();
-      float x = window_size.x / 2 + 50;
-      float y = window_size.y / 2 - size.y / 2;
+      Vec2f pos  = window_size / 2 - size / 2 + Vec2i(0, 0);
     
-      gl::translate(Vec2f(x, y));
+      gl::translate(pos);
       gl::draw(facebook);
+      
+      gl::popModelView();
+    }
+    
+    {
+      gl::pushModelView();
+      
+      Vec2i size = share.getSize();
+      Vec2f pos  = window_size / 2 - size / 2 + Vec2i(150, 0);
+    
+      gl::translate(pos);
+      gl::draw(share);
       
       gl::popModelView();
     }
@@ -163,9 +187,19 @@ class SocialApp : public AppNative {
     }
   }
 
+  void post() {
+      pause = true;
+
+      std::string text("ほげ");
+      UIImage* image = ngs::captureTopView();
+
+      ngs::Share::post(text, image, [this]() { pause = false; });
+  }
+
 #else
 
-  void post(const ngs::Social::Type) { }
+  void post(const ngs::Social::Type) {}
+  void post() {}
   
 #endif
   

@@ -19,6 +19,7 @@
 		4333061D5D2647B188E64D5A /* CinderApp_ios.png in Resources */ = {isa = PBXBuildFile; fileRef = 36A8AA75FD2F40EE9CCCE111 /* CinderApp_ios.png */; };
 		4724C34B1B690D7800E11813 /* Social.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4724C34A1B690D7800E11813 /* Social.mm */; };
 		4724C34D1B690DD800E11813 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4724C34C1B690DD800E11813 /* Social.framework */; };
+		476B264F1B787CD500E5FB91 /* Share.mm in Sources */ = {isa = PBXBuildFile; fileRef = 476B264E1B787CD500E5FB91 /* Share.mm */; };
 		47F7190F1B69C275007134B7 /* Capture.mm in Sources */ = {isa = PBXBuildFile; fileRef = 47F7190E1B69C275007134B7 /* Capture.mm */; };
 		7760BABAD89147D394E942E1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E2A790915FA4AC4B0F9897E /* Default-568h@2x.png */; };
 		C725DFFE121DAC7F00FA186B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C727C02B121B400300192073 /* CoreMedia.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -44,6 +45,7 @@
 		3EF4266B52084939B828A49D /* Social_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = Social_Prefix.pch; sourceTree = "<group>"; };
 		4724C34A1B690D7800E11813 /* Social.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Social.mm; path = ../src/Social.mm; sourceTree = "<group>"; };
 		4724C34C1B690DD800E11813 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		476B264E1B787CD500E5FB91 /* Share.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Share.mm; path = ../src/Share.mm; sourceTree = "<group>"; };
 		47F7190E1B69C275007134B7 /* Capture.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Capture.mm; path = ../src/Capture.mm; sourceTree = "<group>"; };
 		75687FC0454743F5AD765910 /* SocialApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = SocialApp.cpp; path = ../src/SocialApp.cpp; sourceTree = "<group>"; };
 		7E2A790915FA4AC4B0F9897E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		00692BD914FF149000D0A05E /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				476B264E1B787CD500E5FB91 /* Share.mm */,
 				47F7190E1B69C275007134B7 /* Capture.mm */,
 				4724C34A1B690D7800E11813 /* Social.mm */,
 				75687FC0454743F5AD765910 /* SocialApp.cpp */,
@@ -224,6 +227,7 @@
 				4724C34B1B690D7800E11813 /* Social.mm in Sources */,
 				2A843316A05B49429745490F /* SocialApp.cpp in Sources */,
 				47F7190F1B69C275007134B7 /* Capture.mm in Sources */,
+				476B264F1B787CD500E5FB91 /* Share.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
