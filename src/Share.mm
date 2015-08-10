@@ -11,7 +11,10 @@ void post(const std::string& text, UIImage* image,
 
   NSString* str = [[[NSString alloc] initWithCString:text.c_str() encoding:NSUTF8StringEncoding]
                       autorelease];
-  NSArray* activity_items = @[str, image];
+
+  // FIXME:もっと賢いNSArrayの構築方法があると思う...
+  NSArray* activity_items = image ? @[str, image]
+                                  : @[str];
   
   UIActivityViewController* view_controller = [[[UIActivityViewController alloc] initWithActivityItems:activity_items
                                                                                  applicationActivities:@[]]
