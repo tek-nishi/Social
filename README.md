@@ -26,7 +26,7 @@ Cinder(iOS)で作ったアプリからtwitterとかfacebookへ投稿する簡単
 1. cinder_0.8.6_vc2013 フォルダと同じ場所にSocialフォルダを置く
 1. vc2013/Social.sln を開いてビルド
 
-## Liense
+## License
 License All source code files are licensed under the MPLv2.0 license
 
 [MPLv2.0](https://www.mozilla.org/MPL/2.0/)
